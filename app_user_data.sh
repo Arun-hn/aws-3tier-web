@@ -19,9 +19,9 @@ cp -r aws-3tier-web-main/app-tier app-tier
 
 # Update database configuration
 cd ~/app-tier
-sed -i "s/DBENDPOINT/${WRITER_ENDPOINT}/g" DbConfig.js
-sed -i "s/DBUSERNAME/${USERNAME}/g" DbConfig.js
-sed -i "s/DBPASS/${PASSWORD}/g" DbConfig.js
+sed -i 's/DBENDPOINT/${WRITER-ENDPOINT}/g' DbConfig.js
+sed -i 's/DBUSERNAME/${USERNAME}/g' DbConfig.js
+sed -i 's/DBPASS/${PASSWORD}/g' DbConfig.js
 
 # Install application dependencies and start with PM2
 npm install
