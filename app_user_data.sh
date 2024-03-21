@@ -13,9 +13,9 @@ npm install -g pm2
 
 # Download and set up application
 cd ~/
-wget https://github.com/theitguycj/3-tier-web-app-using-terraform-aws/archive/refs/heads/master.zip
-unzip master.zip
-cp -r 3-tier-web-app-using-terraform-aws-master/app-tier app-tier
+wget https://github.com/Arun-hn/aws-3tier-web/archive/refs/heads/main.zip
+unzip aws-3tier-web-main.zip
+cp -r aws-3tier-web-main/app-tier app-tier
 
 # Update database configuration
 cd ~/app-tier
