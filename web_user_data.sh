@@ -1,38 +1,26 @@
 #!/bin/bash
 sudo -u ec2-user -i <<'EOF'
-# Update system and install necessary packages
-sudo yum update -y
-sudo yum install -y curl unzip wget
 
-# Install Node.js using NVM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 source ~/.bashrc
 nvm install 16
 nvm use 16
-
-# Download and set up web application
 cd ~/
 wget https://github.com/Arun-hn/aws-3tier-web/archive/refs/heads/main.zip
 unzip aws-3tier-web-main.zip
 cd aws-3tier-web-main/
-
-# Update nginx configuration
-sed -i "s/LOAD-BALANCER-DNS/${INT_LOAD_BALANCER_DNS}/g" nginx.conf
-
-# Copy web tier files and install dependencies
+sed -i 's/LOAD-BALANCER-DNS/${INT-LOAD-BALANCER-DNS}/g' nginx.conf
 cd ~/
-cp -r aws-3tier-web-main/web-tier web-tier
+cp aws-3tier-web-main/web-tier web-tier --recursive
 cd ~/web-tier
 npm install
 npm run build
-
-# Install and configure nginx
 sudo amazon-linux-extras install nginx1 -y
-sudo rm /etc/nginx/nginx.conf
-sudo cp ~/aws-3tier-web-main/nginx.conf /etc/nginx/nginx.conf
+cd /etc/nginx
+sudo rm nginx.conf
+sudo cp ~aws-3tier-web-main/nginx.conf nginx.conf
 sudo service nginx restart
+chmod -R 755 /home/ec2-user
 sudo chkconfig nginx on
 
-# Adjust permissions
-chmod -R 755 /home/ec2-user
 EOF
