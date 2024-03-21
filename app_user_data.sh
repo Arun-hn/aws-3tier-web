@@ -32,7 +32,7 @@ pm2 save
 
 # Install MySQL and set up initial database and tables
 sudo yum install mysql -y
-mysql -h $WRITER_ENDPOINT -u $USERNAME -p$PASSWORD <<MYSQL_SCRIPT
+mysql -h ${WRITER_ENDPOINT} -u ${USERNAME} -p${PASSWORD} <<MYSQL_SCRIPT
 CREATE DATABASE IF NOT EXISTS webappdb;
 USE webappdb;
 CREATE TABLE IF NOT EXISTS transactions(id INT NOT NULL AUTO_INCREMENT, amount DECIMAL(10,2), description VARCHAR(100), PRIMARY KEY(id));
