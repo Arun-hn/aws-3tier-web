@@ -12,16 +12,16 @@ nvm use 16
 
 # Download and set up web application
 cd ~/
-wget https://github.com/theitguycj/3-tier-web-app-using-terraform-aws/archive/refs/heads/master.zip
-unzip master.zip
-cd 3-tier-web-app-using-terraform-aws-master/
+wget https://github.com/Arun-hn/aws-3tier-web/archive/refs/heads/main.zip
+unzip aws-3tier-web-main.zip
+cd aws-3tier-web-main/
 
 # Update nginx configuration
 sed -i "s/LOAD-BALANCER-DNS/${INT_LOAD_BALANCER_DNS}/g" nginx.conf
 
 # Copy web tier files and install dependencies
 cd ~/
-cp -r 3-tier-web-app-using-terraform-aws-master/web-tier web-tier
+cp -r aws-3tier-web-main/web-tier web-tier
 cd ~/web-tier
 npm install
 npm run build
@@ -29,7 +29,7 @@ npm run build
 # Install and configure nginx
 sudo amazon-linux-extras install nginx1 -y
 sudo rm /etc/nginx/nginx.conf
-sudo cp ~/3-tier-web-app-using-terraform-aws-master/nginx.conf /etc/nginx/nginx.conf
+sudo cp ~/aws-3tier-web-main/nginx.conf /etc/nginx/nginx.conf
 sudo service nginx restart
 sudo chkconfig nginx on
 
